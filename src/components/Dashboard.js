@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import { Card, Button, Alert } from "react-bootstrap";
 import { useAuth } from "../contexts/AuthContext";
+import logo from "./assets/images/vomoz-logo.png";
 
 const Dashboard = () => {
 	const [error, setError] = useState("");
@@ -27,6 +28,17 @@ const Dashboard = () => {
 					{error && <Alert variant="danger">{error}</Alert>}
 					<strong>Email:</strong>
 					{currentUser.email}
+                    <img
+						src={logo}
+						alt=""
+						style={{
+							width: "35px",
+							height: "42px",
+							display: "block",
+							marginLeft: "auto",
+							marginRight: "auto",
+						}}
+					/>
 					<Link to="/update-profile" className="btn btn-primary w-100 mt-3">
 						Update Profile
 					</Link>

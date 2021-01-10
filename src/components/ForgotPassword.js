@@ -2,23 +2,24 @@ import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { Form, Button, Card, Alert } from "react-bootstrap";
 import { useAuth } from "../contexts/AuthContext";
+import logo from "./assets/images/vomoz-logo.png";
 
 const ForgotPassword = () => {
 	const emailRef = useRef();
 	const { resetPassword } = useAuth();
 	const [error, setError] = useState("");
-    const [loading, setLoading] = useState(false);
-    const [message, setMessage] = useState("")
+	const [loading, setLoading] = useState(false);
+	const [message, setMessage] = useState("");
 
 	async function handleSubmit(e) {
 		e.preventDefault();
 
 		try {
-            setMessage("")
+			setMessage("");
 			setError("");
 			setLoading(true);
-            await resetPassword(emailRef.current.value);
-            setMessage("Check your inbox for further instructions")
+			await resetPassword(emailRef.current.value);
+			setMessage("Check your inbox for further instructions");
 		} catch {
 			setError("Failed to reset password");
 		}
@@ -33,6 +34,17 @@ const ForgotPassword = () => {
 					<h2 className="text-center mb-4">Password Reset</h2>
 					{error && <Alert variant="danger">{error}</Alert>}
 					{message && <Alert variant="success">{message}</Alert>}
+					<img
+						src={logo}
+						alt=""
+						style={{
+							width: "35px",
+							height: "42px",
+							display: "block",
+							marginLeft: "auto",
+							marginRight: "auto",
+						}}
+					/>
 					<Form onSubmit={handleSubmit}>
 						<Form.Group id="email">
 							<Form.Label>Email</Form.Label>
